@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 01 - Mobile Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== DESIGN SYSTEM ===== */
+      :root {
+        --gold: #d4af37;
+        --gold-soft: #f5d67b;
+        --bg: #0b0b0b;
+        --card: rgba(255, 255, 255, 0.04);
+        --text: #f5f5f5;
+        --text-soft: #aaaaaa;
+        --border: rgba(255, 255, 255, 0.1);
+
+        --radius: 16px;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+      body {
+        background: radial-gradient(circle at top, #1a1a1a, #000);
+        color: var(--text);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+      header h1 {
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+      }
+      header button {
+        background: transparent;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        padding: 6px 16px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      header button:hover {
+        background: var(--gold);
+        color: black;
+        box-shadow: 0 0 12px var(--gold);
+      }
+      main {
+        padding: 18px;
+      }
+      main section:first-child {
+        background: url("https://picsum.photos/900/400?luxury,perfume")
+          center/cover;
+        border-radius: var(--radius);
+        padding: 30px 20px;
+        margin-bottom: 25px;
+        position: relative;
+        overflow: hidden;
+      }
+      main section:first-child::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.2),
+          rgba(0, 0, 0, 0.8)
+        );
+      }
+      main section:first-child h2 {
+        position: relative;
+        z-index: 1;
+        font-size: 1.6rem;
+      }
+      main section:first-child p {
+        position: relative;
+        z-index: 1;
+        color: var(--text-soft);
+      }
+      main section:nth-child(2) h2 {
+        margin-bottom: 15px;
+        position: relative;
+      }
+      main section:nth-child(2) h2::after {
+        content: "";
+        width: 50px;
+        height: 2px;
+        background: var(--gold);
+        display: block;
+        margin-top: 6px;
+      }
+      article {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin-bottom: 14px;
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow);
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        transition: 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      article::before {
+        content: "";
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.08),
+          transparent
+        );
+        transform: rotate(25deg);
+        transition: 0.5s;
+      }
+
+      article:hover::before {
+        top: 100%;
+        left: 100%;
+      }
+
+      article:hover {
+        transform: translateY(-6px) scale(1.02);
+        border-color: var(--gold);
+      }
+
+      article p {
+        color: var(--text-soft);
+        font-size: 0.9rem;
+      }
+
+      article button {
+        background: var(--gold);
+        border: none;
+        padding: 6px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      article button:hover {
+        box-shadow: 0 0 10px var(--gold-soft);
+      }
+      nav {
+        position: fixed;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        display: flex;
+        justify-content: space-around;
+        padding: 12px;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border);
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text-soft);
+        font-size: 0.9rem;
+        transition: 0.3s;
+      }
+
+      nav a:hover {
+        color: var(--gold);
+      }
+      @media (min-width: 768px) {
+        main {
+          max-width: 700px;
+          margin: auto;
+        }
+      }
+      @media (min-width: 1024px) {
+        main {
+          max-width: 1100px;
+        }
+
+        main section:nth-child(2) {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 18px;
+        }
+
+        main section:nth-child(2) h2 {
+          grid-column: 1 / -1;
+        }
+
+        article {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        article button {
+          align-self: flex-end;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>City Explorer</h1>
+      <button type="button">Search</button>
+    </header>
+
+    <main>
+      <section>
+        <h2>Welcome Back</h2>
+        <p>Plan your next weekend in one tap.</p>
+      </section>
+
+      <section>
+        <h2>Popular Places</h2>
+        <article>
+          <h3>Old Town Market</h3>
+          <p>Food and crafts</p>
+          <button type="button">View</button>
+        </article>
+        <article>
+          <h3>River Walk</h3>
+          <p>Morning trail</p>
+          <button type="button">View</button>
+        </article>
+        <article>
+          <h3>Art Street</h3>
+          <p>Weekend events</p>
+          <button type="button">View</button>
+        </article>
+      </section>
+    </main>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Map</a>
+      <a href="#">Saved</a>
+      <a href="#">Profile</a>
+    </nav>
+  </body>
+</html>
